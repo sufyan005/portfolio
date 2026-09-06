@@ -77,9 +77,9 @@ export const BottomDock: React.FC = () => {
   return (
     <nav
       aria-label="Portfolio Navigation"
-      className="fixed bottom-2 sm:bottom-4 inset-x-0 z-40 flex justify-center pointer-events-none px-2 sm:px-3 mb-[env(safe-area-inset-bottom,0px)]"
+      className="fixed bottom-2 sm:bottom-4 inset-x-0 z-40 flex justify-center pointer-events-none px-1.5 min-[360px]:px-2 sm:px-3 pb-[env(safe-area-inset-bottom,0px)]"
     >
-      <div className="pointer-events-auto h-11 sm:h-12 max-w-[calc(100vw-1.5rem)] overflow-x-auto scrollbar-none px-2 sm:px-5 rounded-full bg-[#080808]/95 backdrop-blur-xl border border-white/20 shadow-[0_12px_36px_rgba(0,0,0,0.85)] flex items-center gap-1 sm:gap-3 shrink-0">
+      <div className="pointer-events-auto h-9 min-[360px]:h-10 sm:h-12 max-w-[calc(100vw-0.75rem)] min-[360px]:max-w-[calc(100vw-1rem)] sm:max-w-max overflow-x-auto scrollbar-none px-1.5 min-[360px]:px-2.5 sm:px-5 rounded-full bg-[#080808]/95 backdrop-blur-xl border border-white/20 shadow-[0_12px_36px_rgba(0,0,0,0.85)] flex items-center justify-center gap-0.5 min-[360px]:gap-1 sm:gap-3 shrink-0">
         {DOCK_ITEMS.map((item) => {
           const isActive = activeSection === item.id;
           return (
@@ -87,31 +87,31 @@ export const BottomDock: React.FC = () => {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleItemClick(e, item.id)}
-              className={`flex items-center gap-1 sm:gap-1.5 h-8 sm:h-9 px-1.5 sm:px-3 text-[10px] sm:text-[11px] font-['JetBrains_Mono'] uppercase tracking-[0.15em] sm:tracking-[0.25em] transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-1 sm:gap-1.5 h-7 min-[360px]:h-8 sm:h-9 px-1 min-[360px]:px-1.5 sm:px-3 text-[8.5px] min-[360px]:text-[9.5px] sm:text-[11px] font-['JetBrains_Mono'] uppercase tracking-[0.02em] min-[360px]:tracking-[0.06em] sm:tracking-[0.25em] transition-all whitespace-nowrap shrink-0 ${
                 isActive
                   ? 'text-white font-bold'
                   : 'text-white/50 hover:text-[#F27D26]'
               }`}
             >
               {isActive && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F27D26] inline-block shadow-[0_0_10px_#F27D26] shrink-0"></span>
+                <span className="w-1 min-[360px]:w-1.5 h-1 min-[360px]:h-1.5 rounded-full bg-[#F27D26] inline-block shadow-[0_0_10px_#F27D26] shrink-0"></span>
               )}
               <span>{item.label}</span>
             </a>
           );
         })}
 
-        <div className="w-px h-4 bg-white/15 mx-0.5 sm:mx-1 shrink-0" />
+        <div className="w-px h-3 min-[360px]:h-4 bg-white/15 mx-0.5 sm:mx-1 shrink-0" />
 
         <button
           onClick={() => {
             scrollToSection('top');
           }}
-          className="flex items-center justify-center w-7 h-7 rounded-full bg-white/[0.04] hover:bg-[#F27D26] text-white/50 hover:text-[#080808] border border-white/10 transition-all shrink-0"
+          className="flex items-center justify-center w-6 h-6 min-[360px]:w-7 min-[360px]:h-7 rounded-full bg-white/[0.04] hover:bg-[#F27D26] text-white/50 hover:text-[#080808] border border-white/10 transition-all shrink-0"
           title="Back to Top"
           aria-label="Back to Top"
         >
-          <ArrowUp className="w-3.5 h-3.5" />
+          <ArrowUp className="w-3 h-3 min-[360px]:w-3.5 min-[360px]:h-3.5" />
         </button>
       </div>
     </nav>
