@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Printer, Download, ExternalLink } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 import { PERSONAL_INFO, EDUCATION_DATA, PROJECTS, SKILL_CATEGORIES } from '../data/portfolioData';
 
 interface ResumeModalProps {
@@ -14,10 +14,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/95 backdrop-blur-md">
@@ -37,13 +33,14 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            <button
-              onClick={handlePrint}
+            <a
+              href="/Sufyan_Siddiqui_Resume.pdf"
+              download="Sufyan_Siddiqui_Resume.pdf"
               className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-[#080808] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/20 text-[10px] sm:text-xs font-['JetBrains_Mono'] uppercase tracking-wider transition-colors whitespace-nowrap"
             >
-              <Printer className="w-3.5 h-3.5" />
-              <span>PRINT / PDF</span>
-            </button>
+              <Download className="w-3.5 h-3.5" />
+              <span>DOWNLOAD PDF</span>
+            </a>
             <button
               onClick={onClose}
               className="w-7 h-7 flex items-center justify-center text-white/50 hover:text-[#F27D26] hover:bg-white/[0.05] transition-colors shrink-0"
