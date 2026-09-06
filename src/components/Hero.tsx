@@ -7,15 +7,15 @@ export const Hero: React.FC = () => {
   return (
     <section id="top" className="flex flex-col gap-6 sm:gap-8 pt-0 pb-8 sm:pb-12 scroll-mt-24">
       {/* Top Architectural Status Bar */}
-      <div className="flex justify-between items-center w-full pt-3.5 sm:pt-4 flex-wrap gap-2 sm:gap-3">
-        <div className="flex items-center gap-3.5 sm:gap-8 text-[10px] sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] uppercase font-['JetBrains_Mono'] overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pt-3 sm:pt-4 gap-2.5 sm:gap-3">
+        <div className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1.5 min-[360px]:gap-2.5 sm:gap-6 md:gap-8 text-[9px] min-[360px]:text-[10px] sm:text-[11px] tracking-[0.06em] min-[360px]:tracking-[0.12em] sm:tracking-[0.3em] uppercase font-['JetBrains_Mono']">
           <a
             href="#about"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('about');
             }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap"
+            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
           >
             ABOUT
           </a>
@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
               e.preventDefault();
               scrollToSection('education');
             }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap"
+            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
           >
             EDUCATION
           </a>
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
               e.preventDefault();
               scrollToSection('projects');
             }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap"
+            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
           >
             PROJECTS
           </a>
@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
               e.preventDefault();
               scrollToSection('skills');
             }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap"
+            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
           >
             SKILLS
           </a>
@@ -55,12 +55,12 @@ export const Hero: React.FC = () => {
               e.preventDefault();
               scrollToSection('contact');
             }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap"
+            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
           >
             CONTACT
           </a>
         </div>
-        <div className="text-[9px] sm:text-[11px] tracking-[0.15em] sm:tracking-[0.18em] uppercase text-white/60 font-['JetBrains_Mono'] text-left sm:text-right w-full sm:w-auto">
+        <div className="text-[7.5px] min-[360px]:text-[8.5px] min-[400px]:text-[9px] sm:text-[11px] tracking-[0.02em] min-[360px]:tracking-[0.06em] sm:tracking-[0.18em] uppercase text-white/60 font-['JetBrains_Mono'] text-left sm:text-right w-full sm:w-auto whitespace-nowrap overflow-hidden text-ellipsis">
           KARACHI (ONSITE · FT · INTERN) · REMOTE &amp; FREELANCE
         </div>
       </div>
