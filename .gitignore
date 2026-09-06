@@ -1,0 +1,46 @@
+# Node.js
+/node_modules/
+*.log
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Environment variables
+.env*
+!.env.example
+
+# IDE
+.DS_Store
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+
+# Vercel
+.vercel/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Ignore all build artifacts
+*.build
+*.bundle
+
+# Package managers
+.npm
+.yarn
+pnpm-lock.yaml
+lock.json
+
+# Vercel-specific
+.vercel
+.vercel.json
+.vercel_build_output
+
+# Runtime data
+*.runtime
+*.cache
