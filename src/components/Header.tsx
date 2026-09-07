@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, FileText, Github, Linkedin } from 'lucide-react';
+import { FileText, Github, Linkedin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useRouter } from '../router';
 

@@ -19,7 +19,6 @@ export const ContactSection: React.FC = () => {
   }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [sentData, setSentData] = useState<{ name: string; email: string; timestamp: string } | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [lastMailtoUrl, setLastMailtoUrl] = useState<string | null>(null);
   const formLoadTimeRef = useRef<number>(Date.now());
@@ -97,14 +96,6 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     setErrorMessage(null);
 
-    const timeFormatted = new Date().toLocaleString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    });
-
     // Check if submission is bot, fake email, disposable domain, or malicious spam
     const isSuspicious = isSpamOrMalicious({
       name: trimmedName,
@@ -120,11 +111,6 @@ export const ContactSection: React.FC = () => {
       // a completely normal success flow, but behind the scenes no email or webhook is triggered.
       await new Promise((resolve) => setTimeout(resolve, 750));
 
-      setSentData({
-        name: trimmedName || 'Visitor',
-        email: formData.email.trim(),
-        timestamp: timeFormatted,
-      });
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '', honeypot: '' });
       setIsSubmitting(false);
@@ -163,11 +149,6 @@ export const ContactSection: React.FC = () => {
         throw new Error(`Server responded with status ${response.status}`);
       }
 
-      setSentData({
-        name: trimmedName,
-        email: formData.email.trim(),
-        timestamp: timeFormatted,
-      });
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '', honeypot: '' });
     } catch (err: any) {
@@ -184,7 +165,6 @@ export const ContactSection: React.FC = () => {
     setFormData({ name: '', email: '', message: '', honeypot: '' });
     setFormErrors({});
     setSubmitStatus('idle');
-    setSentData(null);
     setErrorMessage(null);
   };
 
@@ -229,16 +209,17 @@ export const ContactSection: React.FC = () => {
           {/* Direct Channels List (Email, LinkedIn, GitHub) */}
           <div className="flex flex-col gap-2.5">
             {/* Primary Email - Direct Mail Link with Quick Copy Shortcut */}
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group relative"
-              title={`Click to open mail client to ${PERSONAL_INFO.email}`}
-            >
+            <div className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group relative">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors">
+                <a
+                  href={`mailto:${PERSONAL_INFO.email}`}
+                  className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors"
+                  aria-label={`Email ${PERSONAL_INFO.email}`}
+                  title={`Open mail client to ${PERSONAL_INFO.email}`}
+                >
                   <Mail className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col min-w-0">
+                </a>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex flex-col min-w-0" title={`Open mail client to ${PERSONAL_INFO.email}`}>
                   <div className="flex items-center gap-2">
                     <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
                       PRIMARY EMAIL
@@ -247,7 +228,7 @@ export const ContactSection: React.FC = () => {
                   <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium group-hover:text-[#F27D26] transition-colors">
                     {PERSONAL_INFO.email}
                   </span>
-                </div>
+                </a>
               </div>
 
               <div className="flex items-center gap-2 shrink-0 ml-2">
@@ -273,7 +254,7 @@ export const ContactSection: React.FC = () => {
                 </button>
                 <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-[#F27D26] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
-            </a>
+            </div>
 
             {/* LinkedIn Profile */}
             <a
@@ -411,15 +392,16 @@ export const ContactSection: React.FC = () => {
 
               {/* Name Field */}
               <div className="flex flex-col gap-1">
-                <label className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
+                <label htmlFor="contact-name" className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
                   <span>YOUR NAME *</span>
                   {formErrors.name && (
-                    <span className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
+                    <span id="contact-name-error" className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
                       <AlertCircle className="w-3 h-3 inline" /> {formErrors.name}
                     </span>
                   )}
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   disabled={isSubmitting}
@@ -429,6 +411,8 @@ export const ContactSection: React.FC = () => {
                     if (formErrors.name) setFormErrors({ ...formErrors, name: undefined });
                   }}
                   placeholder="e.g. Lead Engineer / Recruiter"
+                  aria-invalid={Boolean(formErrors.name)}
+                  aria-describedby={formErrors.name ? 'contact-name-error' : undefined}
                   className={`w-full px-3 py-2 bg-[#141414] border text-white text-xs font-['Plus_Jakarta_Sans'] focus:outline-none placeholder:text-white/30 transition-colors ${
                     formErrors.name ? 'border-[#FF5252] focus:border-[#FF5252]' : 'border-white/15 focus:border-[#F27D26]'
                   }`}
@@ -437,15 +421,16 @@ export const ContactSection: React.FC = () => {
 
               {/* Email Field with Strict Anti-Spam Validation */}
               <div className="flex flex-col gap-1">
-                <label className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
+                <label htmlFor="contact-email" className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
                   <span>YOUR EMAIL *</span>
                   {formErrors.email && (
-                    <span className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
+                    <span id="contact-email-error" className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
                       <AlertCircle className="w-3 h-3 inline" /> {formErrors.email}
                     </span>
                   )}
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   disabled={isSubmitting}
@@ -455,6 +440,8 @@ export const ContactSection: React.FC = () => {
                     if (formErrors.email) setFormErrors({ ...formErrors, email: undefined });
                   }}
                   placeholder="you@company.com"
+                  aria-invalid={Boolean(formErrors.email)}
+                  aria-describedby={formErrors.email ? 'contact-email-error' : undefined}
                   className={`w-full px-3 py-2 bg-[#141414] border text-white text-xs font-['Plus_Jakarta_Sans'] focus:outline-none placeholder:text-white/30 transition-colors ${
                     formErrors.email ? 'border-[#FF5252] focus:border-[#FF5252]' : 'border-white/15 focus:border-[#F27D26]'
                   }`}
@@ -463,15 +450,16 @@ export const ContactSection: React.FC = () => {
 
               {/* Message Field */}
               <div className="flex flex-col gap-1">
-                <label className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
+                <label htmlFor="contact-message" className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest flex items-center justify-between">
                   <span>MESSAGE *</span>
                   {formErrors.message && (
-                    <span className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
+                    <span id="contact-message-error" className="text-[#FF5252] flex items-center gap-1 normal-case text-[10px]">
                       <AlertCircle className="w-3 h-3 inline" /> {formErrors.message}
                     </span>
                   )}
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={4}
                   disabled={isSubmitting}
@@ -481,6 +469,8 @@ export const ContactSection: React.FC = () => {
                     if (formErrors.message) setFormErrors({ ...formErrors, message: undefined });
                   }}
                   placeholder="Discussing software engineering roles, distributed systems, or applied ML..."
+                  aria-invalid={Boolean(formErrors.message)}
+                  aria-describedby={formErrors.message ? 'contact-message-error' : undefined}
                   className={`w-full px-3 py-2 bg-[#141414] border text-white text-xs font-['Plus_Jakarta_Sans'] focus:outline-none placeholder:text-white/30 resize-none transition-colors ${
                     formErrors.message ? 'border-[#FF5252] focus:border-[#FF5252]' : 'border-white/15 focus:border-[#F27D26]'
                   }`}

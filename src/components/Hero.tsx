@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, Cpu, Sparkles, Terminal, FileText, Send } from 'lucide-react';
+import { ArrowDown, Terminal, FileText, Send } from 'lucide-react';
 import { PERSONAL_INFO, METRICS } from '../data/portfolioData';
 import { useRouter } from '../router';
 

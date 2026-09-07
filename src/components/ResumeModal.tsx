@@ -12,11 +12,19 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    // Body scroll control for modal
+    const scrollControl = (window as any).PortfolioScrollControl;
+    scrollControl?.openModal();
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      scrollControl?.closeModal?.();
+    };
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/95 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/95 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
       <div
         className="relative w-full max-w-4xl max-h-[92vh] bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col overflow-hidden"
         onWheel={(e) => {
@@ -27,7 +35,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
         <div className="px-3 sm:px-4 py-2.5 sm:py-3.5 bg-[#141414] border-b border-white/15 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             <span className="font-['JetBrains_Mono'] text-[11px] sm:text-xs text-[#F27D26] uppercase font-bold tracking-[0.1em] sm:tracking-[0.2em] whitespace-nowrap">
-              CURRICULUM VITAE
+              <span id="resume-modal-title">CURRICULUM VITAE</span>
             </span>
             <span className="font-['JetBrains_Mono'] text-[10px] sm:text-xs text-white/50 uppercase font-medium whitespace-nowrap hidden xs:inline">
               · ATS RESUME

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
-import { useRouter, ROUTE_LIST, PageRoute } from '../router';
+import { useRouter, ROUTE_LIST } from '../router';
 
 export const BottomDock: React.FC = () => {
   const { currentPage, navigate } = useRouter();

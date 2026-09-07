@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Terminal, RefreshCw, X, AlertCircle } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { RefreshCw, X, AlertCircle } from 'lucide-react';
 
 interface InteractiveHangmanProps {
   onClose: () => void;
@@ -87,6 +87,22 @@ export const InteractiveHangman: React.FC<InteractiveHangmanProps> = ({ onClose 
   const [inputChar, setInputChar] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
 
+  // Body scroll control for modal
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    const scrollControl = (window as any).PortfolioScrollControl;
+    scrollControl?.openModal();
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      scrollControl?.closeModal?.();
+    };
+  }, [onClose]);
+
   const wrongGuesses = Array.from(guessedLetters).filter(
     (char) => !targetWord.includes(char)
   );
@@ -125,7 +141,7 @@ export const InteractiveHangman: React.FC<InteractiveHangmanProps> = ({ onClose 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="hangman-title">
       <div
         className="relative w-full max-w-2xl bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col font-['JetBrains_Mono'] overflow-hidden"
         onWheel={(e) => {
@@ -137,7 +153,7 @@ export const InteractiveHangman: React.FC<InteractiveHangmanProps> = ({ onClose 
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 bg-[#F27D26] rounded-full inline-block"></span>
             <span className="text-xs text-white uppercase font-bold tracking-wider">
-              INTERACTIVE TERMINAL · JAVA HANGMAN
+              <span id="hangman-title">INTERACTIVE TERMINAL · JAVA HANGMAN</span>
             </span>
           </div>
           <button

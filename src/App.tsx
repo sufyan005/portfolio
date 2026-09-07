@@ -121,3 +121,77 @@ export default function App() {
     </RouterProvider>
   );
 }
+
+// Add body class control to prevent scrolling when modals are open
+if (typeof window !== 'undefined') {
+  const originalBodyOverflow = document.body.style.overflow;
+  const originalBodyTop = document.body.style.top;
+  let lockedScrollY = 0;
+
+  const enableBodyScroll = () => {
+    document.body.style.overflow = originalBodyOverflow;
+    document.body.style.top = originalBodyTop;
+    document.body.classList.remove('modal-open');
+    window.scrollTo({ top: lockedScrollY, behavior: 'instant' });
+  };
+
+  const disableBodyScroll = () => {
+    document.body.style.overflow = 'hidden';
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.classList.add('modal-open');
+  };
+
+  // Track modal state
+  let modalOpenCount = 0;
+
+  const closeAllModals = () => {
+    if (modalOpenCount > 0) {
+      modalOpenCount = 0;
+      enableBodyScroll();
+    }
+  };
+
+  const closeModal = () => {
+    if (modalOpenCount > 0) {
+      modalOpenCount--;
+      if (modalOpenCount === 0) {
+        enableBodyScroll();
+      }
+    }
+  };
+
+  const openModal = () => {
+    if (modalOpenCount === 0) {
+      lockedScrollY = window.scrollY;
+    }
+    modalOpenCount++;
+    disableBodyScroll();
+  };
+
+  const isModalOpen = () => modalOpenCount > 0;
+
+  // Export for use in components
+  (window as any).PortfolioScrollControl = {
+    enableBodyScroll,
+    disableBodyScroll,
+    openModal,
+    closeModal,
+    closeAllModals,
+    isModalOpen,
+  };
+
+  // Add CSS for modal-open class to prevent scrolling
+  const style = document.createElement('style');
+  style.textContent = `
+    body.modal-open {
+      overflow: hidden !important;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', closeAllModals);
+}

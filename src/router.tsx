@@ -91,22 +91,31 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     if (window.location.hash !== targetHash) {
       window.history.pushState(null, '', targetHash);
     }
-    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Only scroll to top if not in a modal
+    const scrollControl = (window as any).PortfolioScrollControl;
+    const hasModal = document.querySelector('[class*="fixed inset-0 z-50"]') !== null;
+    const isModalOpen = scrollControl?.isModalOpen() || hasModal;
+
+    if (!isModalOpen) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
     document.title = ROUTES[page].title;
   }, []);
 
   useEffect(() => {
-    let isScrollingToPage = false;
-
     const handleHashChange = () => {
       const page = parseRouteFromHash(window.location.hash);
       setCurrentPage(page);
       document.title = ROUTES[page].title;
 
       // Only scroll to top if not in a modal
-      // Check if any modal is currently open by looking for modal elements
+      const scrollControl = (window as any).PortfolioScrollControl;
       const hasModal = document.querySelector('[class*="fixed inset-0 z-50"]') !== null;
-      if (!hasModal) {
+      const isModalOpen = scrollControl?.isModalOpen() || hasModal;
+
+      if (!isModalOpen) {
         window.scrollTo({ top: 0, behavior: 'instant' });
       }
     };
@@ -121,7 +130,7 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('popstate', handleHashChange);
     };
-  }, [currentPage]);
+  }, []);
 
   const getRouteMeta = useCallback((page: PageRoute) => ROUTES[page], []);
 

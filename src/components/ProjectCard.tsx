@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, ArrowRight, Bolt, Cpu, Play, Terminal, Layers } from 'lucide-react';
+import { ExternalLink, Bolt, Play, Terminal, Layers } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectCardProps {

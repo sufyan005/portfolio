@@ -1,4 +1,4 @@
-import React, { useState, useId } from 'react';
+import React, { useEffect, useState, useId } from 'react';
 import { Star, X, GitFork, Github, MoreVertical, Crown, Film } from 'lucide-react';
 import { MOVIE_DATABASE } from '../data/movieDatabase';
 
@@ -65,6 +65,22 @@ export const InteractiveRecommender: React.FC<InteractiveRecommenderProps> = ({ 
   const [hasRecommended, setHasRecommended] = useState<boolean>(true);
   const selectId = useId();
 
+  // Body scroll control for modal
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    const scrollControl = (window as any).PortfolioScrollControl;
+    scrollControl?.openModal();
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      scrollControl?.closeModal?.();
+    };
+  }, [onClose]);
+
   const currentSeedData = DATABASE[activeSeedMovie] || DATABASE['Batman Begins'];
   const displayedRecs = currentSeedData.recommendations.slice(0, activeRecCount);
 
@@ -78,7 +94,7 @@ export const InteractiveRecommender: React.FC<InteractiveRecommenderProps> = ({ 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-2 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-2 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="movie-recommender-title">
       <div
         id="streamlit-movie-recommender-window"
         className="relative w-full max-w-5xl bg-[#0e1117] text-[#fafafa] font-sans rounded-xl shadow-2xl border border-white/10 flex flex-col max-h-[96vh] overflow-hidden my-auto"
@@ -144,7 +160,7 @@ export const InteractiveRecommender: React.FC<InteractiveRecommenderProps> = ({ 
               🎬
             </span>
             <h1 className="text-2xl sm:text-4xl font-bold text-white tracking-tight">
-              Movie Recommender
+              <span id="movie-recommender-title">Movie Recommender</span>
             </h1>
           </div>
 

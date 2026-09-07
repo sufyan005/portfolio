@@ -1,6 +1,5 @@
 import React from 'react';
-import { User, Code2, Brain, Terminal, Compass, GraduationCap, MapPin, CheckCircle2, ArrowUpRight, FileText, Send } from 'lucide-react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import { Code2, Brain, Terminal, FileText, Send } from 'lucide-react';
 import { useRouter } from '../router';
 
 interface AboutSectionProps {

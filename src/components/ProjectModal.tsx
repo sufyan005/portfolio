@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, ExternalLink, Bolt, Terminal, Cpu, Database, ChevronRight, Layers, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, ExternalLink, Bolt, Terminal, Cpu, Layers, CheckCircle2 } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectModalProps {
@@ -14,28 +14,49 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onLaunchInteractive,
 }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'gallery' | 'architecture'>('overview');
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    // Body scroll control for modal
+    const scrollControl = (window as any).PortfolioScrollControl;
+    scrollControl?.openModal();
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      scrollControl?.closeModal?.();
+    };
   }, [onClose]);
+
+  const hasInterfaceRoles = Boolean(project?.image || project?.gallery?.length);
+
+  useEffect(() => {
+    if (!hasInterfaceRoles && activeTab === 'gallery') {
+      setActiveTab('overview');
+    }
+  }, [activeTab, hasInterfaceRoles, project?.id]);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0 });
+  }, [activeTab]);
 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-md animate-in fade-in duration-200" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] bg-[#0E0E0E] border border-white/20 flex flex-col shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl h-[90vh] max-h-[90vh] bg-[#0E0E0E] border border-white/20 flex flex-col shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         onWheel={(e) => {
           e.stopPropagation();
         }}
       >
         {/* Modal Header */}
-        <div className="p-4 sm:p-5 bg-[#141414] border-b border-white/15 flex items-center justify-between">
+        <div className="p-4 sm:p-5 bg-[#141414] border-b border-white/15 flex-none flex items-center justify-between">
           <div className="flex flex-col gap-1 pr-4">
             <div className="flex items-center gap-2">
               <span className="font-['JetBrains_Mono'] text-[10px] text-[#F27D26] uppercase tracking-[0.25em] font-semibold">
@@ -45,7 +66,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 {project.status}
               </span>
             </div>
-            <h2 className="font-['Syne'] text-lg sm:text-2xl font-black text-white uppercase tracking-tight">
+            <h2 id="project-modal-title" className="font-['Syne'] text-lg sm:text-2xl font-black text-white uppercase tracking-tight">
               {project.title}
             </h2>
           </div>
@@ -60,36 +81,26 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex border-b border-white/15 bg-white/[0.02] overflow-x-auto scrollbar-none">
+        <div className="flex-none min-h-10 flex border-b border-white/15 bg-white/[0.02] overflow-x-auto scrollbar-none">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
-              activeTab === 'overview'
-                ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold'
-                : 'text-white/60 hover:text-white'
-            }`}
+            className={`box-border min-h-10 px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${activeTab === 'overview' ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold' : 'text-white/60 hover:text-white'}`}
           >
             <Terminal className="w-3.5 h-3.5" />
             <span>OVERVIEW</span>
           </button>
-          <button
-            onClick={() => setActiveTab('gallery')}
-            className={`px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
-              activeTab === 'gallery'
-                ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold'
-                : 'text-white/60 hover:text-white'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>INTERFACE &amp; ROLES</span>
-          </button>
+          {hasInterfaceRoles && (
+            <button
+              onClick={() => setActiveTab('gallery')}
+              className={`box-border min-h-10 px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${activeTab === 'gallery' ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold' : 'text-white/60 hover:text-white'}`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>INTERFACE &amp; ROLES</span>
+            </button>
+          )}
           <button
             onClick={() => setActiveTab('architecture')}
-            className={`px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${
-              activeTab === 'architecture'
-                ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold'
-                : 'text-white/60 hover:text-white'
-            }`}
+            className={`box-border min-h-10 px-3 sm:px-4 py-2.5 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors border-r border-white/15 flex items-center gap-1.5 shrink-0 whitespace-nowrap ${activeTab === 'architecture' ? 'bg-[#0E0E0E] text-[#F27D26] border-t-2 border-t-[#F27D26] font-bold' : 'text-white/60 hover:text-white'}`}
           >
             <Cpu className="w-3.5 h-3.5" />
             <span>SYSTEM ARCHITECTURE</span>
@@ -97,7 +108,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1">
+        <div ref={contentRef} className="p-4 sm:p-6 pb-8 overflow-y-auto space-y-6 flex-1 min-h-0">
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
@@ -233,6 +244,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   </div>
                 </div>
               )}
+
             </div>
           )}
 
@@ -277,7 +289,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-[#141414] border-t border-white/15 flex items-center justify-between flex-wrap gap-3">
+        <div className="p-4 bg-[#141414] border-t border-white/15 flex-none flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3 flex-wrap">
             {project.primaryLink && (
               <a

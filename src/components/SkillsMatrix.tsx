@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layers, Search, Check } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 
 export const SkillsMatrix: React.FC = () => {
@@ -41,7 +41,9 @@ export const SkillsMatrix: React.FC = () => {
         {/* Search Input */}
         <div className="relative flex-1">
           <Search className="w-3.5 h-3.5 absolute left-3 top-3 text-white/40" />
+          <label htmlFor="skills-filter" className="sr-only">Filter skills</label>
           <input
+            id="skills-filter"
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

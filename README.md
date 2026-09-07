@@ -11,12 +11,14 @@ Node.js (version 18 or higher)
 ### Installation
 
 1. Clone this repository:
+
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/sufyan005/portfolio.git
 cd portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
@@ -24,6 +26,7 @@ npm install
 ### Development Server
 
 Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -33,6 +36,7 @@ The app will be accessible at `http://localhost:3000`.
 ## Project Overview
 
 This portfolio demonstrates:
+
 - Full-stack web development skills
 - Modern React and TypeScript expertise
 - UI/UX design capabilities with Tailwind CSS
