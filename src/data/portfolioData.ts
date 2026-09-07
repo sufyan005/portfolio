@@ -26,7 +26,6 @@ export const PERSONAL_INFO = {
   github: 'https://github.com/sufyan005',
   githubDisplay: 'github.com/sufyan005',
   languages: 'ENGLISH (FLUENT) · URDU (NATIVE)',
-  engineeringSpec: 'CLAUDE CODE PRODUCTION',
 };
 
 export const CONTACT_CONFIG = {

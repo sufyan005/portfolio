@@ -309,12 +309,6 @@ export const ContactSection: React.FC = () => {
               <span className="text-white/50 uppercase">SPOKEN LANGUAGES:</span>
               <span className="text-white">{PERSONAL_INFO.languages}</span>
             </div>
-            <div className="flex items-center justify-between flex-wrap gap-1">
-              <span className="text-white/50 uppercase">ENGINEERING SPEC:</span>
-              <span className="text-[#F27D26] uppercase font-semibold">
-                {PERSONAL_INFO.engineeringSpec}
-              </span>
-            </div>
           </div>
         </div>
 
