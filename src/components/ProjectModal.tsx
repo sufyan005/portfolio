@@ -30,6 +30,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       <div
         className="relative w-full max-w-4xl max-h-[90vh] bg-[#0E0E0E] border border-white/20 flex flex-col shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => {
+          e.stopPropagation();
+        }}
       >
         {/* Modal Header */}
         <div className="p-4 sm:p-5 bg-[#141414] border-b border-white/15 flex items-center justify-between">

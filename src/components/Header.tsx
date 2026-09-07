@@ -1,40 +1,44 @@
 import React from 'react';
-import { Terminal, FileText, Github, Linkedin, Mail } from 'lucide-react';
+import { Terminal, FileText, Github, Linkedin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { scrollToSection } from '../utils/scroll';
+import { useRouter } from '../router';
 
 interface HeaderProps {
   onOpenResume: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
+  const { currentPage, navigate } = useRouter();
+
   return (
-    <header className="fixed top-0 w-full z-40 bg-[#080808]/90 backdrop-blur-xl border-b border-white/15 pt-[env(safe-area-inset-top,0px)]">
+    <header className="fixed top-0 w-full z-40 bg-[#080808]/90 backdrop-blur-xl border-b border-white/15 pt-[env(safe-area-inset-top,0px)] shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
       <div className="max-w-6xl mx-auto h-16 sm:h-20 px-2.5 min-[360px]:px-3 sm:px-8 flex items-center justify-between gap-1.5 min-[360px]:gap-2 sm:gap-4">
         {/* Identity & Status */}
         <div className="flex flex-col gap-0.5 sm:gap-1 min-w-0 shrink-0">
           <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-            <a
-              href="#top"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('top');
-              }}
-              className="font-['Syne'] text-xs min-[360px]:text-sm sm:text-base md:text-lg font-black tracking-tight text-white hover:text-[#F27D26] transition-colors whitespace-nowrap"
-              title="Return to top"
+            <button
+              onClick={() => navigate('home')}
+              className="font-['Syne'] text-xs min-[360px]:text-sm sm:text-base md:text-lg font-black tracking-tight text-white hover:text-[#F27D26] transition-colors whitespace-nowrap text-left"
+              title="Return to Home"
             >
               {PERSONAL_INFO.name}
-            </a>
-            <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.1em] sm:tracking-[0.2em] px-1 sm:px-2 py-0.5 bg-white/[0.04] text-white/60 border border-white/15 uppercase truncate hidden min-[480px]:inline-block shrink-0">
-              {PERSONAL_INFO.role}
-            </span>
+            </button>
+            {currentPage !== 'home' ? (
+              <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.15em] px-1.5 py-0.5 bg-[#F27D26]/10 text-[#F27D26] border border-[#F27D26]/30 uppercase font-semibold hidden md:inline">
+                /{currentPage.toUpperCase()}
+              </span>
+            ) : (
+              <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.1em] sm:tracking-[0.2em] px-1 sm:px-2 py-0.5 bg-white/[0.04] text-white/60 border border-white/15 uppercase hidden min-[480px]:inline-block shrink-0">
+                {PERSONAL_INFO.role}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             <span className="relative flex h-1.5 w-1.5 min-[360px]:h-2 min-[360px]:w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F27D26] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 min-[360px]:h-2 min-[360px]:w-2 bg-[#F27D26] shadow-[0_0_8px_#F27D26]"></span>
             </span>
-            <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.04em] sm:tracking-[0.18em] text-white/60 uppercase truncate">
+            <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.04em] sm:tracking-[0.18em] text-white/60 uppercase">
               <span className="text-[#F27D26] font-semibold">{PERSONAL_INFO.status}</span>
               <span className="hidden md:inline"> · KARACHI (ONSITE · FT · INTERN) · REMOTE &amp; FREELANCE</span>
             </span>

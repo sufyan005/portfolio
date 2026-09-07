@@ -82,6 +82,9 @@ export const InteractiveRecommender: React.FC<InteractiveRecommenderProps> = ({ 
       <div
         id="streamlit-movie-recommender-window"
         className="relative w-full max-w-5xl bg-[#0e1117] text-[#fafafa] font-sans rounded-xl shadow-2xl border border-white/10 flex flex-col max-h-[96vh] overflow-hidden my-auto"
+        onWheel={(e) => {
+          e.stopPropagation();
+        }}
       >
         {/* Streamlit Top Nav / App Bar */}
         <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-white/10 bg-[#0e1117] text-white/70 select-none">

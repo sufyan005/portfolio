@@ -71,8 +71,8 @@ export const ContactSection: React.FC = () => {
 
     // Standard Name validation
     const trimmedName = formData.name.trim();
-    if (!trimmedName || trimmedName.length < 2) {
-      errors.name = 'Please provide your full name (min 2 characters).';
+    if (!trimmedName || trimmedName.length < 3) {
+      errors.name = 'Please provide your full name (min 3 characters).';
     }
 
     // Standard Email format validation
@@ -189,7 +189,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="flex flex-col gap-6 pt-12 pb-24 border-t border-white/20 scroll-mt-[4.5rem] sm:scroll-mt-20">
+    <section id="contact" className="flex flex-col gap-6 pt-6 sm:pt-10 pb-24 scroll-mt-[4.5rem] sm:scroll-mt-20">
       {/* Section Header */}
       <div className="flex items-baseline justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
@@ -244,7 +244,7 @@ export const ContactSection: React.FC = () => {
                       PRIMARY EMAIL
                     </span>
                   </div>
-                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white truncate font-medium group-hover:text-[#F27D26] transition-colors">
+                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium group-hover:text-[#F27D26] transition-colors">
                     {PERSONAL_INFO.email}
                   </span>
                 </div>
@@ -290,7 +290,7 @@ export const ContactSection: React.FC = () => {
                   <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
                     LINKEDIN PROFILE
                   </span>
-                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white truncate font-medium group-hover:text-[#F27D26] transition-colors">
+                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium group-hover:text-[#F27D26] transition-colors">
                     {PERSONAL_INFO.linkedinDisplay}
                   </span>
                 </div>
@@ -313,7 +313,7 @@ export const ContactSection: React.FC = () => {
                   <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
                     SOURCE REPOSITORY
                   </span>
-                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white truncate font-medium group-hover:text-[#F27D26] transition-colors">
+                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium group-hover:text-[#F27D26] transition-colors">
                     {PERSONAL_INFO.githubDisplay}
                   </span>
                 </div>

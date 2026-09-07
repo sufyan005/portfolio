@@ -162,7 +162,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               href={project.primaryLink.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-['JetBrains_Mono'] text-[10px] text-white/50 hover:text-[#F27D26] tracking-wider truncate max-w-[200px] transition-colors"
+              className="font-['JetBrains_Mono'] text-[10px] text-white/50 hover:text-[#F27D26] tracking-wider max-w-[200px] transition-colors"
               title={project.primaryLink.url}
             >
               {project.primaryLink.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}

@@ -39,7 +39,7 @@ export const CONTACT_CONFIG = {
 export const METRICS: MetricStat[] = [
   {
     value: '3.7 / 4.0',
-    label: 'CGPA · DHA Suffa Univ',
+    label: 'CGPA · DHA Suffa Uni',
     highlight: true,
   },
   {

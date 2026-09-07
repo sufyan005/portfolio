@@ -1,15 +1,16 @@
 import React from 'react';
 import { User, Code2, Brain, Terminal, Compass, GraduationCap, MapPin, CheckCircle2, ArrowUpRight, FileText, Send } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { scrollToSection } from '../utils/scroll';
+import { useRouter } from '../router';
 
 interface AboutSectionProps {
   onOpenResume: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
+  const { navigate } = useRouter();
   return (
-    <section id="about" className="flex flex-col gap-8 pt-12 pb-16 border-t border-white/20 scroll-mt-[4.5rem] sm:scroll-mt-20">
+    <section id="about" className="flex flex-col gap-8 pt-6 sm:pt-10 pb-16 scroll-mt-[4.5rem] sm:scroll-mt-20">
       {/* Section Header */}
       <div className="flex items-baseline justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
@@ -55,17 +56,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
               <FileText className="w-4 h-4" />
               <span>VIEW ATS RESUME</span>
             </button>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('contact');
-              }}
+            <button
+              onClick={() => navigate('contact')}
               className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/20 font-['JetBrains_Mono'] text-xs font-semibold uppercase tracking-[0.18em] transition-all"
             >
               <Send className="w-3.5 h-3.5 text-[#F27D26]" />
               <span>GET IN TOUCH</span>
-            </a>
+            </button>
           </div>
         </div>
 

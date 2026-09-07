@@ -1,82 +1,68 @@
 import React from 'react';
-import { ArrowDown, Cpu, Sparkles, Terminal } from 'lucide-react';
+import { ArrowDown, Cpu, Sparkles, Terminal, FileText, Send } from 'lucide-react';
 import { PERSONAL_INFO, METRICS } from '../data/portfolioData';
-import { scrollToSection } from '../utils/scroll';
+import { useRouter } from '../router';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onOpenResume?: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
+  const { navigate } = useRouter();
+
   return (
-    <section id="top" className="flex flex-col gap-6 sm:gap-8 pt-0 pb-8 sm:pb-12 scroll-mt-24">
-      {/* Top Architectural Status Bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full pt-3 sm:pt-4 gap-2.5 sm:gap-3">
-        <div className="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1.5 min-[360px]:gap-2.5 sm:gap-6 md:gap-8 text-[9px] min-[360px]:text-[10px] sm:text-[11px] tracking-[0.06em] min-[360px]:tracking-[0.12em] sm:tracking-[0.3em] uppercase font-['JetBrains_Mono']">
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('about');
-            }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
-          >
-            ABOUT
-          </a>
-          <a
-            href="#education"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('education');
-            }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
-          >
-            EDUCATION
-          </a>
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('projects');
-            }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
-          >
-            PROJECTS
-          </a>
-          <a
-            href="#skills"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('skills');
-            }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
-          >
-            SKILLS
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contact');
-            }}
-            className="text-white/70 hover:text-[#F27D26] transition-colors whitespace-nowrap shrink-0"
-          >
-            CONTACT
-          </a>
-        </div>
-        <div className="text-[7.5px] min-[360px]:text-[8.5px] min-[400px]:text-[9px] sm:text-[11px] tracking-[0.02em] min-[360px]:tracking-[0.06em] sm:tracking-[0.18em] uppercase text-white/60 font-['JetBrains_Mono'] text-left sm:text-right w-full sm:w-auto whitespace-nowrap overflow-hidden text-ellipsis">
-          KARACHI (ONSITE · FT · INTERN) · REMOTE &amp; FREELANCE
-        </div>
-      </div>
+    <section
+      id="top"
+      className="flex flex-col gap-6 sm:gap-8 pt-0 pb-8 sm:pb-12 scroll-mt-24"
+      onWheel={(e) => {
+        // Stop scroll events from propagating to prevent interference with modals
+        e.stopPropagation();
+      }}
+    >
 
       {/* Massive Typographic Centerpiece */}
       <div className="flex flex-col items-start sm:items-center justify-center py-4 sm:py-6 my-1 sm:my-2">
-        <div className="text-[10px] sm:text-sm tracking-[0.25em] sm:tracking-[0.35em] uppercase text-[#F27D26] font-['JetBrains_Mono'] font-semibold mb-3 sm:mb-4">
+        <div className="text-[10px] sm:text-sm tracking-[0.2em] sm:tracking-[0.35em] uppercase text-[#F27D26] font-['JetBrains_Mono'] font-semibold mb-3 sm:mb-4">
           [ SYSTEMS &amp; MACHINE LEARNING ]
         </div>
-        <h1 className="font-['Syne'] text-4xl sm:text-6xl md:text-7xl lg:text-[90px] xl:text-[110px] font-black uppercase tracking-[-0.05em] sm:tracking-[-0.06em] leading-[0.88] sm:leading-[0.82] text-white text-left sm:text-center break-words w-full">
+        <h1 className="font-['Syne'] text-3xl min-[360px]:text-4xl sm:text-6xl md:text-7xl lg:text-[88px] xl:text-[104px] font-black uppercase tracking-[-0.04em] sm:tracking-[-0.06em] leading-[0.92] sm:leading-[0.82] text-white text-left sm:text-center break-words w-full">
           SUFYAN<br />
           <span className="text-[#F27D26]">SIDDIQUI</span>
         </h1>
         <p className="font-['Plus_Jakarta_Sans'] text-sm sm:text-base lg:text-lg text-white/70 max-w-2xl text-left sm:text-center mt-4 sm:mt-6 font-light leading-relaxed">
           {PERSONAL_INFO.subtitle}
         </p>
+
+        {/* Primary Action Controls */}
+        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2.5 sm:gap-3 mt-6 sm:mt-7 w-full">
+          {onOpenResume && (
+            <button
+              onClick={onOpenResume}
+              className="flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#F27D26] hover:bg-[#FF9142] text-[#080808] font-['JetBrains_Mono'] text-xs font-bold uppercase tracking-[0.16em] transition-all shadow-[0_4px_16px_rgba(242,125,38,0.25)] shrink-0"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>VIEW ATS RESUME</span>
+            </button>
+          )}
+          <button
+            onClick={() => {
+              const el = document.getElementById('featured-projects');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              else navigate('projects');
+            }}
+            className="flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/20 hover:border-white/40 font-['JetBrains_Mono'] text-xs font-semibold uppercase tracking-[0.16em] transition-all shrink-0"
+          >
+            <span>FEATURED PROJECTS</span>
+            <ArrowDown className="w-3.5 h-3.5 text-[#F27D26]" />
+          </button>
+          <button
+            onClick={() => navigate('contact')}
+            className="flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-transparent hover:bg-white/[0.04] text-white/80 hover:text-white border border-white/15 font-['JetBrains_Mono'] text-xs font-medium uppercase tracking-[0.16em] transition-all shrink-0"
+          >
+            <Send className="w-3.5 h-3.5 text-[#F27D26]" />
+            <span>CONTACT</span>
+          </button>
+        </div>
       </div>
 
       {/* Architectural Summary & Status Row */}
@@ -175,20 +161,20 @@ export const Hero: React.FC = () => {
         ))}
       </div>
 
-      {/* Jump to Project Ledger Directive */}
+      {/* Jump to Featured Projects Directive */}
       <div className="flex items-center justify-between pt-2">
-        <a
-          href="#about"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection('about');
+        <button
+          onClick={() => {
+            const el = document.getElementById('featured-projects');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            else navigate('projects');
           }}
-          className="inline-flex items-center gap-2 font-['JetBrains_Mono'] text-[11px] text-white/60 hover:text-[#F27D26] transition-colors uppercase tracking-[0.25em]"
+          className="inline-flex items-center gap-2 font-['JetBrains_Mono'] text-[10px] sm:text-[11px] text-white/60 hover:text-[#F27D26] transition-colors uppercase tracking-[0.2em] sm:tracking-[0.25em]"
         >
-          <span>READ ABOUT ME &amp; PROJECTS</span>
+          <span>EXPLORE FEATURED PROJECTS</span>
           <ArrowDown className="w-3.5 h-3.5 text-[#F27D26] animate-bounce" />
-        </a>
-        <span className="font-['JetBrains_Mono'] text-[10px] tracking-[0.25em] text-white/40 uppercase hidden sm:inline">
+        </button>
+        <span className="font-['JetBrains_Mono'] text-[9px] sm:text-[10px] tracking-[0.2em] text-white/40 uppercase hidden sm:inline">
           DHA SUFFA UNIVERSITY · BS CS
         </span>
       </div>

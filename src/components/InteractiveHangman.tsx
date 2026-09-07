@@ -126,7 +126,12 @@ export const InteractiveHangman: React.FC<InteractiveHangmanProps> = ({ onClose 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/90 backdrop-blur-md">
-      <div className="relative w-full max-w-2xl bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col font-['JetBrains_Mono'] overflow-hidden">
+      <div
+        className="relative w-full max-w-2xl bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col font-['JetBrains_Mono'] overflow-hidden"
+        onWheel={(e) => {
+          e.stopPropagation();
+        }}
+      >
         {/* CLI Window Title Bar */}
         <div className="p-3 bg-[#141414] border-b border-white/15 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -186,7 +191,7 @@ export const InteractiveHangman: React.FC<InteractiveHangmanProps> = ({ onClose 
             </div>
             <div className="bg-[#141414] p-2 border border-white/15 flex justify-between">
               <span className="text-white/50">DISCARD BANK:</span>
-              <span className="text-white truncate max-w-[120px]">
+              <span className="text-white max-w-[120px]">
                 {wrongGuesses.join(', ') || 'NONE'}
               </span>
             </div>

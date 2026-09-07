@@ -19,7 +19,7 @@ export const SkillsMatrix: React.FC = () => {
   }).filter((cat) => cat.isVisible);
 
   return (
-    <section id="skills" className="flex flex-col gap-6 pt-12 pb-16 border-t border-white/20 scroll-mt-[4.5rem] sm:scroll-mt-20">
+    <section id="skills" className="flex flex-col gap-6 pt-6 sm:pt-10 pb-16 scroll-mt-[4.5rem] sm:scroll-mt-20">
       {/* Section Header */}
       <div className="flex items-baseline justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">

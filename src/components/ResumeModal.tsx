@@ -17,7 +17,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#080808]/95 backdrop-blur-md">
-      <div className="relative w-full max-w-4xl max-h-[92vh] bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col overflow-hidden">
+      <div
+        className="relative w-full max-w-4xl max-h-[92vh] bg-[#0E0E0E] border border-white/20 shadow-2xl flex flex-col overflow-hidden"
+        onWheel={(e) => {
+          e.stopPropagation();
+        }}
+      >
         {/* Modal Toolbar */}
         <div className="px-3 sm:px-4 py-2.5 sm:py-3.5 bg-[#141414] border-b border-white/15 flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
