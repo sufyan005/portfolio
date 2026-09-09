@@ -36,11 +36,11 @@ export const BottomDock: React.FC = () => {
           );
         })}
 
-        <div className="w-px h-3 sm:h-4 bg-white/15 mx-0.5 sm:mx-1 shrink-0" />
+        <div className="hidden sm:block w-px h-3 sm:h-4 bg-white/15 mx-0.5 sm:mx-1 shrink-0" />
 
         <button
           onClick={handleScrollToTop}
-          className="flex items-center justify-center w-5 h-5 min-[360px]:w-6 min-[360px]:h-6 sm:w-7 sm:h-7 rounded-full bg-white/[0.04] hover:bg-[#F27D26] text-white/50 hover:text-[#080808] border border-white/10 transition-all shrink-0"
+          className="hidden sm:flex items-center justify-center w-5 h-5 min-[360px]:w-6 min-[360px]:h-6 sm:w-7 sm:h-7 rounded-full bg-white/[0.04] hover:bg-[#F27D26] text-white/50 hover:text-[#080808] border border-white/10 transition-all shrink-0"
           title="Back to Top of Page"
           aria-label="Back to Top of Page"
         >
