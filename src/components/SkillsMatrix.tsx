@@ -25,7 +25,7 @@ export const SkillsMatrix: React.FC = () => {
         <div className="flex items-center gap-3">
           <div className="w-2.5 h-2.5 bg-[#F27D26] inline-block shadow-[0_0_10px_#F27D26]"></div>
           <h2 className="font-['Syne'] text-xl sm:text-2xl font-black uppercase tracking-tight text-white">
-            SKILLS MATRIX
+            SKILLS
           </h2>
           <span className="font-['JetBrains_Mono'] text-[10px] tracking-[0.2em] px-2 py-0.5 bg-white/[0.04] text-[#F27D26] border border-white/20 uppercase">
             [CAPABILITIES]

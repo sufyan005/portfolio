@@ -5,13 +5,7 @@ import movieRecommenderUserProvidedImg from '../assets/images/movie_recommender_
 export const PERSONAL_INFO = {
   name: 'SUFYAN SIDDIQUI',
   role: 'FULL-STACK & ML ENGINEER',
-  status: 'AVAILABLE FOR ROLES',
   location: 'KARACHI, PK',
-  availability: {
-    karachi: 'Onsite · Full-Time · Part-Time · Internships',
-    remote: 'Remote & Freelance Worldwide',
-    badge: 'Karachi (Onsite · FT · Intern) · Remote & Freelance',
-  },
   university: 'DHA Suffa University',
   educationTag: '7TH SEMESTER · CGPA 3.7 / 4.0',
   title: 'FULL-STACK SYSTEMS & APPLIED MACHINE LEARNING',
@@ -205,39 +199,8 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    id: 'brick-breaker',
-    number: '03',
-    category: 'SYSTEMS & GRAPHICS',
-    title: 'Brick Breaker Game',
-    technologies: ['Java', 'Swing / AWT', '2D Physics Engine', 'OOP'],
-    status: 'DESKTOP CLIENT',
-    statusBadge: '99% Collision Accuracy · 60 FPS Render Loop',
-    highlight: 'GUI-based arcade game with real-time 2D rendering and 99% collision detection accuracy. Features robust game state management with dynamic scoring system, level progression loops, and fine-tuned ball-paddle elasticity vectors.',
-    summary: 'A high-precision 2D physics arcade engine constructed in native Java, featuring a custom AABB (Axis-Aligned Bounding Box) collision resolution loop, dynamic angle refraction depending on paddle impact offset, and progressive brick durability tiers.',
-    bullets: [
-      'GUI-based arcade game with real-time 2D rendering and 99% collision detection accuracy.',
-      'Features robust game state management with dynamic scoring system, level progression loops, and fine-tuned ball-paddle elasticity vectors.',
-      'Clean object-oriented architecture separating physics tick loops, render canvases, and key listener input handlers.',
-    ],
-    metrics: [
-      { label: 'Collision Accuracy', value: '99%' },
-      { label: 'Target Frame Rate', value: '60 FPS Fixed' },
-      { label: 'Language Core', value: 'Java / AWT' },
-    ],
-    architectureHighlights: [
-      {
-        title: 'AABB Elastic Collision Math',
-        description: 'Resolves ball penetration vectors against composite brick matrices with continuous time-stepping to avoid tunneling.',
-      },
-      {
-        title: 'Variable Angle Paddle Deflection',
-        description: 'Calculates normalized hit position relative to paddle center to compute exit trajectory angles dynamically.',
-      },
-    ],
-  },
-  {
     id: 'hangman-game',
-    number: '04',
+    number: '03',
     category: 'ALGORITHMIC TOOLING',
     title: 'Hangman Game',
     technologies: ['Java', 'Console Architecture', 'Regular Expressions', 'File I/O'],
@@ -263,6 +226,37 @@ export const PROJECTS: Project[] = [
       {
         title: 'ASCII Scaffold Frame Render Engine',
         description: 'Dynamically draws gallows states corresponding to Remaining Strike counters.',
+      },
+    ],
+  },
+  {
+    id: 'brick-breaker',
+    number: '04',
+    category: 'SYSTEMS & GRAPHICS',
+    title: 'Brick Breaker Game',
+    technologies: ['Java', 'Swing / AWT', '2D Physics Engine', 'OOP'],
+    status: 'DESKTOP CLIENT',
+    statusBadge: '99% Collision Accuracy · 60 FPS Render Loop',
+    highlight: 'GUI-based arcade game with real-time 2D rendering and 99% collision detection accuracy. Features robust game state management with dynamic scoring system, level progression loops, and fine-tuned ball-paddle elasticity vectors.',
+    summary: 'A high-precision 2D physics arcade engine constructed in native Java, featuring a custom AABB (Axis-Aligned Bounding Box) collision resolution loop, dynamic angle refraction depending on paddle impact offset, and progressive brick durability tiers.',
+    bullets: [
+      'GUI-based arcade game with real-time 2D rendering and 99% collision detection accuracy.',
+      'Features robust game state management with dynamic scoring system, level progression loops, and fine-tuned ball-paddle elasticity vectors.',
+      'Clean object-oriented architecture separating physics tick loops, render canvases, and key listener input handlers.',
+    ],
+    metrics: [
+      { label: 'Collision Accuracy', value: '99%' },
+      { label: 'Target Frame Rate', value: '60 FPS Fixed' },
+      { label: 'Language Core', value: 'Java / AWT' },
+    ],
+    architectureHighlights: [
+      {
+        title: 'AABB Elastic Collision Math',
+        description: 'Resolves ball penetration vectors against composite brick matrices with continuous time-stepping to avoid tunneling.',
+      },
+      {
+        title: 'Variable Angle Paddle Deflection',
+        description: 'Calculates normalized hit position relative to paddle center to compute exit trajectory angles dynamically.',
       },
     ],
   },

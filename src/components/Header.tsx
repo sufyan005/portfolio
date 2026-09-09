@@ -33,16 +33,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-            <span className="relative flex h-1.5 w-1.5 min-[360px]:h-2 min-[360px]:w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F27D26] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 min-[360px]:h-2 min-[360px]:w-2 bg-[#F27D26] shadow-[0_0_8px_#F27D26]"></span>
-            </span>
-            <span className="font-['JetBrains_Mono'] text-[8px] min-[360px]:text-[9px] sm:text-[10px] tracking-[0.04em] sm:tracking-[0.18em] text-white/60 uppercase">
-              <span className="text-[#F27D26] font-semibold">{PERSONAL_INFO.status}</span>
-              <span className="hidden md:inline"> · KARACHI (ONSITE · FT · INTERN) · REMOTE &amp; FREELANCE</span>
-            </span>
-          </div>
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0" />
         </div>
 
         {/* Action Controls */}
@@ -51,8 +42,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
           <button
             onClick={onOpenResume}
             className="h-7 sm:h-9 px-1.5 min-[360px]:px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 bg-white/[0.04] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/20 text-[9px] min-[360px]:text-[10px] sm:text-[11px] font-['JetBrains_Mono'] uppercase tracking-[0.04em] sm:tracking-[0.2em] transition-all shrink-0"
-            title="View ATS Resume"
-            aria-label="View ATS Resume"
+            title="View Resume"
+            aria-label="View Resume"
           >
             <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
             <span className="inline">RESUME</span>

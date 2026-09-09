@@ -191,19 +191,11 @@ export const ContactSection: React.FC = () => {
         <div className="lg:col-span-7 bg-[#0E0E0E] p-4 sm:p-6 border border-white/15 flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             <span className="font-['JetBrains_Mono'] text-[10px] text-[#F27D26] uppercase tracking-[0.25em] font-semibold">
-              GET IN TOUCH &amp; AVAILABILITY
+              GET IN TOUCH
             </span>
             <p className="font-['Plus_Jakarta_Sans'] text-xs sm:text-sm text-white/70 font-light leading-relaxed">
-              Open to software engineering roles, distributed systems development, and applied ML opportunities. Click any direct link below to connect immediately.
+              Reach out directly through any of the channels below.
             </p>
-            <div className="p-3 bg-[#141414] border border-white/10 text-[11px] font-['JetBrains_Mono'] space-y-1 mt-1">
-              <div className="text-white/90">
-                <span className="text-[#F27D26] font-semibold">IN KARACHI:</span> Onsite · Full-Time · Part-Time · Internships
-              </div>
-              <div className="text-white/60">
-                <span className="text-white/80 font-semibold">OUTSIDE KARACHI:</span> Remote Positions &amp; Freelance Projects
-              </div>
-            </div>
           </div>
 
           {/* Direct Channels List (Email, LinkedIn, GitHub) */}

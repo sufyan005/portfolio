@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
               className="flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#F27D26] hover:bg-[#FF9142] text-[#080808] font-['JetBrains_Mono'] text-xs font-bold uppercase tracking-[0.16em] transition-all shadow-[0_4px_16px_rgba(242,125,38,0.25)] shrink-0"
             >
               <FileText className="w-3.5 h-3.5" />
-              <span>VIEW ATS RESUME</span>
+              <span>VIEW RESUME</span>
             </button>
           )}
           <button
@@ -77,12 +77,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
               {PERSONAL_INFO.bio}
             </p>
           </div>
-          <div className="flex items-center gap-2 pt-6">
-            <Terminal className="w-3.5 h-3.5 text-[#F27D26]" />
-            <span className="font-['JetBrains_Mono'] text-[10px] tracking-[0.2em] text-white/50 uppercase">
-              STATUS: OPEN FOR NEW OPPORTUNITIES
-            </span>
-          </div>
         </div>
 
         {/* Col 6-8: Production Targets & Tooling */}
@@ -116,28 +110,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
               </div>
             </div>
           </div>
-          <div className="pt-4 font-['JetBrains_Mono'] text-[10px] tracking-[0.2em] text-white/50 uppercase">
-            DHA SUFFA UNIVERSITY · BS COMPUTER SCIENCE
-          </div>
         </div>
 
-        {/* Col 9-12: Status Indicator & Directive */}
-        <div className="lg:col-span-4 flex flex-col justify-end items-start lg:items-end">
-          <div className="w-12 h-12 rounded-full border border-[#F27D26] flex items-center justify-center mb-3">
-            <div className="w-2.5 h-2.5 bg-[#F27D26] rounded-full shadow-[0_0_14px_#F27D26] animate-pulse"></div>
-          </div>
-          <div className="text-[10px] tracking-[0.25em] uppercase text-[#F27D26] font-['JetBrains_Mono'] font-bold text-left lg:text-right">
-            AVAILABLE FOR ROLES
-          </div>
-          <div className="mt-1 flex flex-col items-start lg:items-end gap-0.5 text-left lg:text-right font-['JetBrains_Mono'] text-[10px] uppercase">
-            <span className="text-white/90 sm:whitespace-nowrap">
-              <span className="text-[#F27D26] font-bold">Karachi:</span> Onsite · Full-time · Part-time · Intern
-            </span>
-            <span className="text-white/60 sm:whitespace-nowrap">
-              <span className="text-white/80 font-medium">Remote:</span> Worldwide &amp; Freelance
-            </span>
-          </div>
-        </div>
       </div>
 
       {/* High-Impact Metrics Row */}
@@ -174,9 +148,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           <span>EXPLORE FEATURED PROJECTS</span>
           <ArrowDown className="w-3.5 h-3.5 text-[#F27D26] animate-bounce" />
         </button>
-        <span className="font-['JetBrains_Mono'] text-[9px] sm:text-[10px] tracking-[0.2em] text-white/40 uppercase hidden sm:inline">
-          DHA SUFFA UNIVERSITY · BS CS
-        </span>
       </div>
     </section>
   );

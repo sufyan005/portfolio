@@ -21,9 +21,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
             BACKGROUND &amp; FOCUS
           </span>
         </div>
-        <span className="font-['JetBrains_Mono'] text-[10px] tracking-[0.25em] text-white/50 uppercase">
-          CS UNDERGRADUATE · DHA SUFFA UNIVERSITY
-        </span>
       </div>
 
       {/* Main Grid: Narrative & Highlights */}
@@ -53,7 +50,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
               className="flex items-center gap-2 px-4 py-2.5 bg-[#F27D26] hover:bg-[#FF9142] text-[#080808] font-['JetBrains_Mono'] text-xs font-bold uppercase tracking-[0.18em] transition-all"
             >
               <FileText className="w-4 h-4" />
-              <span>VIEW ATS RESUME</span>
+              <span>VIEW RESUME</span>
             </button>
             <button
               onClick={() => navigate('contact')}
@@ -91,21 +88,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
             <div className="flex items-center justify-between py-1 border-b border-white/5">
               <span className="text-white/50 uppercase">Location</span>
               <span className="text-white">Karachi, Pakistan</span>
-            </div>
-            <div className="flex items-center justify-between py-1 border-b border-white/5">
-              <span className="text-white/50 uppercase">Status</span>
-              <span className="text-[#F27D26] flex items-center gap-1.5 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F27D26] animate-pulse"></span>
-                Available for Roles
-              </span>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between py-1.5 border-b border-white/5 gap-0.5">
-              <span className="text-white/50 uppercase">In Karachi</span>
-              <span className="text-white font-medium text-[11px] sm:text-right">Onsite · Full-Time · Part-Time · Internships</span>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between py-1.5 gap-0.5">
-              <span className="text-white/50 uppercase">Outside Karachi</span>
-              <span className="text-[#F27D26] font-medium text-[11px] sm:text-right">Remote Positions &amp; Freelance</span>
             </div>
           </div>
 

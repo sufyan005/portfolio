@@ -43,14 +43,14 @@ export const ROUTES: Record<PageRoute, RouteMeta> = {
     id: 'skills',
     label: 'SKILLS',
     path: '#/skills',
-    title: 'Skills Matrix · Sufyan Siddiqui',
+    title: 'Skills · Sufyan Siddiqui',
     order: 4,
   },
   contact: {
     id: 'contact',
     label: 'CONTACT',
     path: '#/contact',
-    title: 'Transmission & Contact · Sufyan Siddiqui',
+    title: 'Contact · Sufyan Siddiqui',
     order: 5,
   },
 };
