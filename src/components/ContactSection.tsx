@@ -205,11 +205,13 @@ export const ContactSection: React.FC = () => {
               <div className="flex flex-1 min-w-0 items-center gap-3">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
-                  className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors"
+                  className="group/email relative flex items-center gap-2 text-[#F27D26] shrink-0"
                   aria-label={`Email ${PERSONAL_INFO.email}`}
                   title={`Open mail client to ${PERSONAL_INFO.email}`}
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-4 h-4 transition-transform duration-300 group-hover/email:-translate-y-0.5" />
+                  <span className="hidden sm:inline font-['JetBrains_Mono'] text-[9px] tracking-[0.12em] uppercase">Email</span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-px origin-left scale-x-0 bg-[#F27D26] transition-transform duration-300 group-hover/email:scale-x-100" />
                 </a>
                 <a href={`mailto:${PERSONAL_INFO.email}`} className="flex flex-1 min-w-0 flex-col" title={`Open mail client to ${PERSONAL_INFO.email}`}>
                   <div className="flex items-center gap-2">
@@ -255,8 +257,10 @@ export const ContactSection: React.FC = () => {
               className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors">
-                  <Linkedin className="w-4 h-4" />
+                <div className="group/link relative flex items-center gap-2 text-[#F27D26] shrink-0">
+                  <Linkedin className="w-4 h-4 transition-transform duration-300 group-hover/link:-translate-y-0.5" />
+                  <span className="hidden sm:inline font-['JetBrains_Mono'] text-[9px] tracking-[0.12em] uppercase">LinkedIn</span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-px origin-left scale-x-0 bg-[#F27D26] transition-transform duration-300 group-hover/link:scale-x-100" />
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
@@ -278,8 +282,10 @@ export const ContactSection: React.FC = () => {
               className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors">
-                  <Github className="w-4 h-4" />
+                <div className="group/link relative flex items-center gap-2 text-[#F27D26] shrink-0">
+                  <Github className="w-4 h-4 transition-transform duration-300 group-hover/link:-translate-y-0.5" />
+                  <span className="hidden sm:inline font-['JetBrains_Mono'] text-[9px] tracking-[0.12em] uppercase">GitHub</span>
+                  <span className="absolute -bottom-1 left-0 right-0 h-px origin-left scale-x-0 bg-[#F27D26] transition-transform duration-300 group-hover/link:scale-x-100" />
                 </div>
                 <div className="flex flex-col min-w-0">
                   <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
