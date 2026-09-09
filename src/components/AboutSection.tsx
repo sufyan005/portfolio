@@ -30,44 +30,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenResume }) => {
           <div className="space-y-4 font-['Plus_Jakarta_Sans'] text-white/85 text-base sm:text-lg leading-relaxed font-light">
             <p>
               Hello! I'm <strong className="text-white font-semibold">Sufyan Siddiqui</strong>, a Computer Science undergraduate at{' '}
-              <span className="text-[#F27D26] font-medium">DHA Suffa University</span> in Karachi, Pakistan. I am currently in my 7th semester, maintaining a strong academic record with a <span className="text-white font-semibold">3.7 / 4.0 CGPA</span>.
+              <span className="text-[#F27D26] font-medium">DHA Suffa University</span> in Karachi, Pakistan. I'm currently in my 7th semester, maintaining a strong academic record with a <strong className="text-white font-semibold">3.7 / 4.0 CGPA</strong>.
             </p>
             <p>
-              My engineering focus lies at the intersection of <strong className="text-white font-semibold">full-stack web systems</strong> and <strong className="text-white font-semibold">applied machine learning</strong>. I enjoy taking foundational computer science concepts—from network protocols and algorithms to data structures and linear algebra—and engineering them into practical, performant software applications.
+              My engineering focus lies at the intersection of <strong className="text-white font-semibold">full-stack web systems</strong> and applied machine learning. I enjoy taking foundational computer science concepts, from network protocols and algorithms to data structures and linear algebra, and turning them into practical, performant software applications.
             </p>
             <p>
-              Recently, I engineered a <span className="text-white font-semibold">real-time multiplayer game</span> using TypeScript, WebSockets, and state synchronization, alongside an <span className="text-white font-semibold">applied ML movie recommendation system</span> indexing 5,000+ items with optimized Parquet and NPZ data serializations for ~5x faster load speeds.
+              Recently, I built a real-time multiplayer game using TypeScript, WebSockets, and state synchronization, along with an applied ML movie recommendation system that indexes 5,000+ items using optimized Parquet and NPZ data serialization for roughly 5x faster load speeds.
             </p>
             <p className="text-sm sm:text-base text-white/70">
-              Beyond code, I value strict typing, clean design architecture, intuitive user experiences, and continuous learning. I am actively seeking software engineering and full-stack opportunities where I can contribute to high-impact projects.
+              Beyond code, I care about strict typing, clean design architecture, intuitive user experiences, and continuous learning. I'm actively looking for software engineering and full-stack opportunities where I can contribute to high-impact projects.
             </p>
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <button
-              onClick={onOpenResume}
-              className="flex items-center gap-2 px-4 py-2.5 bg-[#F27D26] hover:bg-[#FF9142] text-[#080808] font-['JetBrains_Mono'] text-xs font-bold uppercase tracking-[0.18em] transition-all"
-            >
-              <FileText className="w-4 h-4" />
-              <span>VIEW RESUME</span>
-            </button>
-            <button
-              onClick={() => navigate('contact')}
-              className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/20 font-['JetBrains_Mono'] text-xs font-semibold uppercase tracking-[0.18em] transition-all"
-            >
-              <Send className="w-3.5 h-3.5 text-[#F27D26]" />
-              <span>GET IN TOUCH</span>
-            </button>
-          </div>
         </div>
 
         {/* Right Column: Key Details & Core Pillars (5 cols) */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          {/* Quick Facts Ledger */}
+          {/* Quick Facts */}
           <div className="bg-[#0E0E0E] border border-white/15 p-5 space-y-3 font-['JetBrains_Mono'] text-xs">
             <div className="text-[10px] tracking-[0.25em] text-white/40 uppercase pb-2 border-b border-white/10 font-semibold">
-              ACADEMIC &amp; PROFESSIONAL LEDGER
+              QUICK FACTS
             </div>
             <div className="flex items-center justify-between py-1 border-b border-white/5">
               <span className="text-white/50 uppercase">Degree</span>

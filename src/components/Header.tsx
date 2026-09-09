@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
                 className={`h-8 flex flex-1 min-w-0 px-0 sm:flex-none sm:px-3 items-center justify-center gap-0.5 sm:gap-1.5 rounded-sm whitespace-nowrap font-['JetBrains_Mono'] text-[7px] min-[360px]:text-[8px] sm:text-[10px] uppercase tracking-normal sm:tracking-[0.12em] transition-colors ${
                   isActive
                     ? 'bg-white/[0.1] text-white'
-                    : 'text-white/50 hover:bg-white/[0.05] hover:text-[#F27D26]'
+                    : 'text-[#A1A1AA] hover:bg-white/[0.05] hover:text-[#F27D26]'
                 }`}
               >
                 {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#F27D26] shadow-[0_0_8px_#F27D26]" />}
