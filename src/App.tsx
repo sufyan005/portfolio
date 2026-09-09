@@ -6,7 +6,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Header } from './components/Header';
-import { BottomDock } from './components/BottomDock';
 import { ProjectModal } from './components/ProjectModal';
 import { InteractiveHangman } from './components/InteractiveHangman';
 import { InteractiveRecommender } from './components/InteractiveRecommender';
@@ -70,7 +69,7 @@ function PortfolioShell() {
       <Header onOpenResume={() => setShowResumeModal(true)} />
 
       {/* Main Multi-Page Canvas with Breathing Room */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-20 sm:pt-24 pb-28 sm:pb-32">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-32 sm:pt-36 pb-12 sm:pb-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
@@ -83,9 +82,6 @@ function PortfolioShell() {
           </motion.div>
         </AnimatePresence>
       </main>
-
-      {/* Floating Ergonomic Sticky Bottom Dock */}
-      <BottomDock />
 
       {/* Interactive Project Spec Modal (Global) */}
       {selectedProject && (

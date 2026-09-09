@@ -1,7 +1,7 @@
 import React from 'react';
 import { FileText, Github, Linkedin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { useRouter } from '../router';
+import { ROUTE_LIST, useRouter } from '../router';
 
 interface HeaderProps {
   onOpenResume: () => void;
@@ -11,14 +11,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
   const { currentPage, navigate } = useRouter();
 
   return (
-    <header className="fixed top-0 w-full z-40 bg-[#080808]/90 backdrop-blur-xl border-b border-white/15 pt-[env(safe-area-inset-top,0px)] shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
-      <div className="max-w-6xl mx-auto h-16 sm:h-20 px-2.5 min-[360px]:px-3 sm:px-8 flex items-center justify-between gap-1.5 min-[360px]:gap-2 sm:gap-4">
+    <header className="fixed top-0 w-full z-40 bg-[#080808]/95 backdrop-blur-xl border-b border-[#B8662A]/25 pt-[env(safe-area-inset-top,0px)] shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
+      <div className="max-w-6xl mx-auto h-14 sm:h-16 px-3 sm:px-8 flex items-center justify-between gap-2 sm:gap-4">
         {/* Identity & Status */}
         <div className="flex flex-col gap-0.5 sm:gap-1 min-w-0 shrink-0">
           <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
             <button
               onClick={() => navigate('home')}
-              className="font-['Syne'] text-xs min-[360px]:text-sm sm:text-base md:text-lg font-black tracking-tight text-white hover:text-[#F27D26] transition-colors whitespace-nowrap text-left"
+              className="font-['Syne'] text-xs min-[360px]:text-sm sm:text-base md:text-lg font-black tracking-tight text-white hover:text-[#F27D26] transition-colors whitespace-nowrap text-left truncate max-w-[38vw] sm:max-w-none"
               title="Return to Home"
             >
               {PERSONAL_INFO.name}
@@ -41,12 +41,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
           {/* Resume Trigger */}
           <button
             onClick={onOpenResume}
-            className="h-7 sm:h-9 px-1.5 min-[360px]:px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 bg-white/[0.04] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/20 text-[9px] min-[360px]:text-[10px] sm:text-[11px] font-['JetBrains_Mono'] uppercase tracking-[0.04em] sm:tracking-[0.2em] transition-all shrink-0"
+            className="h-7 sm:h-9 px-2 sm:px-3 flex items-center justify-center gap-1 sm:gap-1.5 bg-white/[0.04] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/20 text-[9px] min-[360px]:text-[10px] sm:text-[11px] font-['JetBrains_Mono'] uppercase tracking-[0.04em] sm:tracking-[0.2em] transition-all shrink-0"
             title="View Resume"
             aria-label="View Resume"
           >
             <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
-            <span className="inline">RESUME</span>
+            <span className="hidden min-[360px]:inline">RESUME</span>
           </button>
 
           {/* GitHub Source Link */}
@@ -74,6 +74,29 @@ export const Header: React.FC<HeaderProps> = ({ onOpenResume }) => {
           </a>
         </div>
       </div>
+
+      <nav aria-label="Portfolio primary navigation" className="border-t border-[#B8662A]/25">
+        <div className="max-w-6xl mx-auto h-11 px-2 sm:px-8 flex items-center justify-center gap-0.5 sm:gap-3">
+          {ROUTE_LIST.map((item) => {
+            const isActive = currentPage === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => navigate(item.id)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`h-8 flex flex-1 min-w-0 px-0 sm:flex-none sm:px-3 items-center justify-center gap-0.5 sm:gap-1.5 rounded-sm whitespace-nowrap font-['JetBrains_Mono'] text-[7px] min-[360px]:text-[8px] sm:text-[10px] uppercase tracking-normal sm:tracking-[0.12em] transition-colors ${
+                  isActive
+                    ? 'bg-white/[0.1] text-white'
+                    : 'text-white/50 hover:bg-white/[0.05] hover:text-[#F27D26]'
+                }`}
+              >
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#F27D26] shadow-[0_0_8px_#F27D26]" />}
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
     </header>
   );
 };
