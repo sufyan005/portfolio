@@ -201,8 +201,8 @@ export const ContactSection: React.FC = () => {
           {/* Direct Channels List (Email, LinkedIn, GitHub) */}
           <div className="flex flex-col gap-2.5">
             {/* Primary Email - Direct Mail Link with Quick Copy Shortcut */}
-            <div className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group relative">
-              <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-start sm:items-center justify-between p-3.5 bg-[#141414] hover:bg-white/[0.05] border border-white/15 hover:border-[#F27D26]/60 transition-all group relative">
+              <div className="flex flex-1 min-w-0 items-center gap-3">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
                   className="w-8 h-8 bg-white/[0.04] group-hover:bg-[#F27D26]/10 flex items-center justify-center border border-white/15 group-hover:border-[#F27D26]/50 text-[#F27D26] shrink-0 transition-colors"
@@ -211,24 +211,23 @@ export const ContactSection: React.FC = () => {
                 >
                   <Mail className="w-4 h-4" />
                 </a>
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex flex-col min-w-0" title={`Open mail client to ${PERSONAL_INFO.email}`}>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="flex flex-1 min-w-0 flex-col" title={`Open mail client to ${PERSONAL_INFO.email}`}>
                   <div className="flex items-center gap-2">
                     <span className="font-['JetBrains_Mono'] text-[9px] text-white/50 uppercase tracking-widest">
                       PRIMARY EMAIL
                     </span>
                   </div>
-                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium group-hover:text-[#F27D26] transition-colors">
+                  <span className="font-['JetBrains_Mono'] text-xs sm:text-sm text-white font-medium whitespace-nowrap group-hover:text-[#F27D26] transition-colors">
                     {PERSONAL_INFO.email}
                   </span>
                 </a>
               </div>
 
               <div className="flex items-center gap-2 shrink-0 ml-2">
-                {/* Secondary copy button for users who want to copy */}
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="px-2 sm:px-2.5 py-1 bg-white/[0.04] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/15 text-[10px] font-['JetBrains_Mono'] uppercase tracking-wider flex items-center gap-1 transition-colors"
+                  className="flex max-[639px]:hidden max-[639px]:pointer-events-none px-2 sm:px-2.5 py-1 bg-white/[0.04] hover:bg-[#F27D26] text-white hover:text-[#080808] border border-white/15 text-[10px] font-['JetBrains_Mono'] uppercase tracking-wider items-center gap-1 transition-colors"
                   title="Copy email address"
                   aria-label="Copy email address"
                 >
